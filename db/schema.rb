@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_07_020847) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_07_153612) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -50,6 +50,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_07_020847) do
     t.string "author"
     t.string "genre"
     t.decimal "price"
+    t.integer "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_books_on_category_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -67,10 +75,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_07_020847) do
     t.string "name"
     t.string "password"
     t.string "email"
+    t.string "address"
+    t.string "province"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "book_orders", "books"
   add_foreign_key "book_orders", "orders"
+  add_foreign_key "books", "categories"
 end
