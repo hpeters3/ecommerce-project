@@ -4,6 +4,6 @@ class Order < ApplicationRecord
   has_many :book_orders, dependent: :destroy, foreign_key: :order_id, primary_key: :order_id
   has_many :books, through: :book_orders
 
-  validates :books_ordered, type: :is_numeric
-  validates :total_cost, type: :is_numeric
+  validates :books_ordered, numericality: true
+  validates :total_cost, numericality: true
 end
