@@ -1,4 +1,24 @@
 <h1>Books for Sale</h1>
+<%= form_with url: "/", method: :get do |form| %>
+    <%= form.select :category, ["Everything", "On Sale", "No Stock", "Bestsellers", "General"] %>
+    <%= form.label :query, "Search all products:" %>
+    <%= form.search_field :query %>
+    <%= form.submit "Search" %>
+<% end %>
+
+<% if @search_performed%>
+    <% if @results.any? %>
+      <h1>Search Results</h1>
+      <ul>
+        <% @results.each do |result| %>
+          <li><%= result.inspect %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No results found.</p>
+    <% end
+end%>
+
 <p><%= link_to "Admin Page", "/admin"%>
 <table>
     <tr>
