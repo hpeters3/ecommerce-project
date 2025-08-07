@@ -18,6 +18,11 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem "faker"
+gem "activeadmin"
+gem "devise"
+gem "cancancan"
+gem "draper"
+gem "pundit"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
