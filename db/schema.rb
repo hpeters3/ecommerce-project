@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_07_153612) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_08_200507) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -56,6 +56,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_07_153612) do
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cart_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["product_id"], name: "index_cart_items_on_product_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -84,4 +99,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_07_153612) do
   add_foreign_key "book_orders", "books"
   add_foreign_key "book_orders", "orders"
   add_foreign_key "books", "categories"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "products"
 end

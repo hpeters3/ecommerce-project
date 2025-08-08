@@ -33,6 +33,11 @@ end%>
             <td><%= book.author%></td>
             <td><%= book.genre%></td>
             <td><%= book.price%></td>
+            <td><%= form_with url: cart_items_path, method: :post do %>
+                  <%= hidden_field_tag :book_id, book.id %>
+                  <%= submit_tag "Add to Cart" %>
+                <% end %>
+            </td>
         </tr>
     <% end %>
 </table>
