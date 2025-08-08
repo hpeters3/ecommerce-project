@@ -1,5 +1,5 @@
 ActiveAdmin.register Book do
-  permit_params :title, :author, :genre, :price
+  permit_params :title, :author, :genre, :price, :category_id
 
   config.filters= false
 
@@ -9,6 +9,7 @@ ActiveAdmin.register Book do
       row :author
       row :genre
       row :price
+      row :category_id
     end
   end
 
@@ -18,6 +19,7 @@ ActiveAdmin.register Book do
       f.input :author
       f.input :genre
       f.input :price
+      f.input :category_id
     end
     f.actions
   end
