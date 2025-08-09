@@ -7,14 +7,15 @@
         <li>
             <%= item.book.title %>
             <%= item.quantity %> * $<%= item.book.price %>
-            <%= @submission %>
         </li>
     <% end %>
 </ul>
 <ul>
-    <p>Please enter your province/territory and address:</p>
+    <p>Please enter your name, province/territory, and address:</p>
     <%= form_with url: "checkout", method: :get do |form| %>
         <%= form.select :province, [" ", "BC", "AB", "SK", "MB", "ON", "QB", "NL", "NS", "NB", "PEI", "YK", "NT", "NU"] %>
+        <%= form.label :name, "Please enter your name:" %>
+        <%= form.search_field :name %>
         <%= form.label :address, "Please enter your address:" %>
         <%= form.search_field :address %>
         <%= form.submit "Submit" %>
@@ -22,9 +23,9 @@
 </ul>
 <ul>
     <%if @submission == true && @tax != 0%>
-        <%= link_to "Payment", "/payment" %>
+        <%= link_to "Purchase", "/purchase" %>
     <% elsif @submission == true%>
-        <p>Please enter a province.</p>
+        <p>Please enter a name and a province.</p>
     <% end %>
 </ul>
     

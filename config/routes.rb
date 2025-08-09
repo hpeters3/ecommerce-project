@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "/", to: "books#index"
   get "cart", to: "carts#show"
   get "checkout", to: "carts#checkout"
-  get "payment", to: "carts#payment"
+  get "purchase", to: "carts#purchase"
 
   resources :books
   resources :cart
