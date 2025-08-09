@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get "/", to: "books#index"
   get "cart", to: "carts#show"
+  get "checkout", to: "carts#checkout"
+  get "payment", to: "carts#payment"
 
   resources :books
   resources :cart

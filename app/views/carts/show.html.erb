@@ -3,12 +3,13 @@
 
 <% if @cart.cart_items.any? %>
     <ul>
-        <% @cart. cart_items.each do |book| %>
+        <% @cart.cart_items.each do |item| %>
             <li>
-                <%= book.book.title%>
-                <%= book.quantity%> * $<%= book.book.price%>
+                <%= item.book.title%>
+                <%= item.quantity%> * $<%= item.book.price%>
             </li>
         <% end %>
+        <%= link_to "Checkout", "/checkout"%>
     </ul>
 <% else %>
     <p>Your cart is empty.</p>

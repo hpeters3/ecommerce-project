@@ -1,0 +1,30 @@
+<h1>Checkout Page</h1>
+<p><%= link_to "Books", "/" %></p>
+<p><%= link_to "Cart", "/cart" %></p>
+
+<ul>
+    <% @cart.cart_items.each do |item| %>
+        <li>
+            <%= item.book.title %>
+            <%= item.quantity %> * $<%= item.book.price %>
+            <%= @submission %>
+        </li>
+    <% end %>
+</ul>
+<ul>
+    <p>Please enter your province/territory and address:</p>
+    <%= form_with url: "checkout", method: :get do |form| %>
+        <%= form.select :province, [" ", "BC", "AB", "SK", "MB", "ON", "QB", "NL", "NS", "NB", "PEI", "YK", "NT", "NU"] %>
+        <%= form.label :address, "Please enter your address:" %>
+        <%= form.search_field :address %>
+        <%= form.submit "Submit" %>
+    <% end %>
+</ul>
+<ul>
+    <%if @submission == true && @tax != 0%>
+        <%= link_to "Payment", "/payment" %>
+    <% elsif @submission == true%>
+        <p>Please enter a province.</p>
+    <% end %>
+</ul>
+    
