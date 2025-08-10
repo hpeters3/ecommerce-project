@@ -37,14 +37,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_08_200507) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "book_orders", force: :cascade do |t|
-    t.integer "book_id", null: false
-    t.integer "order_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id", "order_id"], name: "index_book_orders_on_book_id_and_order_id", unique: true
-  end
-
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
@@ -79,7 +71,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_08_200507) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "book_id"
     t.integer "books_ordered"
     t.decimal "total_cost"
     t.datetime "created_at", null: false
@@ -95,8 +86,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_08_200507) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "book_orders", "books"
-  add_foreign_key "book_orders", "orders"
   add_foreign_key "books", "categories"
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "carts"

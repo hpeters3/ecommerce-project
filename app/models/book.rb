@@ -1,6 +1,4 @@
 class Book < ApplicationRecord
-  has_many :book_orders, dependent: :destroy
-  has_many :orders, through: :book_orders
   belongs_to :category
 
   validates :title, presence: :true
