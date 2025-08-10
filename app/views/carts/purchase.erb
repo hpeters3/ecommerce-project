@@ -1,1 +1,26 @@
-<h1>The Page Where I Take Your Money!</h1>
+<h1>Thank You For Your Purchase!</h1>
+<p>Here is your receipt:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Your name:</th>
+            <th>Your address:</th>
+            <th>Your province/territory:</th>
+            <th>Amount of books purchased:</th>
+            <th>Subtotal:</th>
+            <th>Tax:</th>
+            <th>Total cost:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= @name%></td>
+            <td><%= @address %></td>
+            <td><%= @province %></td>
+            <td><%= @books_ordered %></td>
+            <td>$<%= @subtotal.round(2) %></td>
+            <td>$<%= @tax_paid.round(2) %></td>
+            <td>$<%= @total.round(2) %></td>
+        </tr>
+    </tbody>
+</table>

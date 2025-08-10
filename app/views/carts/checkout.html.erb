@@ -10,12 +10,12 @@
         </li>
     <% end %>
     <p>Your subtotal comes to: $<%= @subtotal %></p>
-    <p>If you live in Newfoundland & Labrador, New Brunswick, or Prince Edward Island, your total is $<%= @subtotal15 %></p>
-    <p>If you live in Nova Scotia, your total is $<%= @subtotal14 %></p>
-    <p>If you live in Ontario, your total is $<%= @subtotal13 %></p>
-    <p>If you live in British Columbia or Manitoba, your total is $<%= @subtotal12 %></p>
-    <p>If you live in Saskatchewan, your total is $<%= @subtotal11 %></p>
-    <p>If you live in Alberta, Yukon, Northwest Territories, or Nunavut, your total is $<%= @subtotal5 %></p>
+    <p>If you live in Newfoundland & Labrador, New Brunswick, or Prince Edward Island, your total is $<%= @subtotal15.round(2) %></p>
+    <p>If you live in Nova Scotia, your total is $<%= @subtotal14.round(2) %></p>
+    <p>If you live in Ontario, your total is $<%= @subtotal13.round(2) %></p>
+    <p>If you live in British Columbia or Manitoba, your total is $<%= @subtotal12.round(2) %></p>
+    <p>If you live in Saskatchewan, your total is $<%= @subtotal11.round(2) %></p>
+    <p>If you're fortunately enough to live in Alberta, Yukon, Northwest Territories, or Nunavut, your total is $<%= @subtotal5.round(2) %></p>
     <p>If you live in Quebec... no you don't.</p>
 </ul>
 <ul>

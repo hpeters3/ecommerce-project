@@ -103,7 +103,15 @@ class CartsController < ApplicationController
   end
 
   def purchase
-    @cart = current_cart
+    @id = User.order(created_at: :desc).first
+    @name = User.where(id: @id).pluck(:name).first
+    if User.where(id: @id).pluck(:address).present?
+      @address = User.where(id: @id).pluck(:address).first
+    end
+    @province = User.where(id: @id).pluck(:province).first
+    @books_ordered = Order.where(user_id: @id).pluck(:books_ordered)
+    @books_ordered = @books_ordered.join.to_i
+    @total = Order.where(user_id: @id).pluck(:total_cost)
 
     if @province == "BC"
       @tax = 12
@@ -132,5 +140,10 @@ class CartsController < ApplicationController
     elsif @province == "NU"
       @tax = 5
     end
+    @total = @total.join.to_f
+    @tax_paid = @total * (1 - (1 / ((@tax / 100.00) + 1)))
+    @subtotal = @total - @tax_paid
+
+    session.delete(:cart_id)
   end
 end
