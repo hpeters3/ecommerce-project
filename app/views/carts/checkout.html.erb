@@ -1,0 +1,39 @@
+<h1>Checkout Page</h1>
+<p><%= link_to "Books", "/" %></p>
+<p><%= link_to "Cart", "/cart" %></p>
+
+<ul>
+    <% @cart.cart_items.each do |item| %>
+        <li>
+            <%= item.book.title %>
+            <%= item.quantity %> * $<%= item.book.price %>
+        </li>
+    <% end %>
+    <p>Your subtotal comes to: $<%= @subtotal %></p>
+    <p>If you live in Newfoundland & Labrador, New Brunswick, or Prince Edward Island, your total is $<%= @subtotal15.round(2) %></p>
+    <p>If you live in Nova Scotia, your total is $<%= @subtotal14.round(2) %></p>
+    <p>If you live in Ontario, your total is $<%= @subtotal13.round(2) %></p>
+    <p>If you live in British Columbia or Manitoba, your total is $<%= @subtotal12.round(2) %></p>
+    <p>If you live in Saskatchewan, your total is $<%= @subtotal11.round(2) %></p>
+    <p>If you're fortunately enough to live in Alberta, Yukon, Northwest Territories, or Nunavut, your total is $<%= @subtotal5.round(2) %></p>
+    <p>If you live in Quebec... no you don't.</p>
+</ul>
+<ul>
+    <p>Please enter your name, province/territory, and address:</p>
+    <%= form_with url: "checkout", method: :get do |form| %>
+        <%= form.select :province, [" ", "BC", "AB", "SK", "MB", "ON", "QB", "NL", "NS", "NB", "PEI", "YK", "NT", "NU"] %>
+        <%= form.label :name, "Please enter your name:" %>
+        <%= form.search_field :name %>
+        <%= form.label :address, "Please enter your address:" %>
+        <%= form.search_field :address %>
+        <%= form.submit "Submit" %>
+    <% end %>
+</ul>
+<ul>
+    <%if @submission == true && @tax != 0%>
+        <%= link_to "Purchase", "/purchase" %>
+    <% elsif @submission == true%>
+        <p>Please enter a name and a province.</p>
+    <% end %>
+</ul>
+    

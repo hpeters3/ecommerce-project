@@ -20,6 +20,8 @@
 end%>
 
 <p><%= link_to "Admin Page", "/admin"%>
+<p><%= link_to "Cart", "/cart"%>
+
 <table>
     <tr>
         <th>Title</th>
@@ -32,7 +34,12 @@ end%>
             <td><%= link_to book.title, book_path(book) %></td>
             <td><%= book.author%></td>
             <td><%= book.genre%></td>
-            <td><%= book.price%></td>
+            <td>$<%= book.price%></td>
+            <td><%= form_with url: cart_items_path, method: :post do %>
+                  <%= hidden_field_tag :book_id, book.id %>
+                  <%= submit_tag "Add to Cart" %>
+                <% end %>
+            </td>
         </tr>
     <% end %>
 </table>

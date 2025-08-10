@@ -1,0 +1,17 @@
+<h2>Your Cart</h2>
+<p><%= link_to "Books", "/"%>
+
+<% if @cart.cart_items.any? %>
+    <ul>
+        <% @cart.cart_items.each do |item| %>
+            <li>
+                <%= item.book.title%>
+                <%= item.quantity%> * $<%= item.book.price%>
+            </li>
+        <% end %>
+        <%= link_to "Checkout", "/checkout"%>
+    </ul>
+<% else %>
+    <p>Your cart is empty.</p>
+<% end %>
+    
